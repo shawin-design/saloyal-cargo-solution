@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Silently record a visit via our own serverless proxy (keeps the API token private)
+  fetch('/api/track', { method: 'GET' }).catch(() => {});
+
   // Header shadow on scroll
   const header = document.querySelector('.site-header');
   if (header) {

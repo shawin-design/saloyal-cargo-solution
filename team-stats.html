@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visitor Stats | Saloyal Cargo Solution</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="images/logo-scs.png">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body{background:var(--navy-deep);}
+  .stats-wrap{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:40px 24px;text-align:center;color:#fff;
+  }
+  .stats-logo{width:auto;height:44px;margin-bottom:28px;}
+  .stats-card{
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;padding:44px 50px;backdrop-filter:blur(8px);min-width:280px;
+  }
+  .stats-number{
+    font-family:var(--font-display);font-size:clamp(3rem,8vw,5rem);font-weight:700;
+    color:var(--sky);line-height:1;margin-bottom:10px;
+  }
+  .stats-label{font-family:var(--font-mono);font-size:0.85rem;letter-spacing:0.08em;color:rgba(255,255,255,.6);text-transform:uppercase;}
+  .stats-refresh{
+    margin-top:26px;background:none;border:1px solid rgba(255,255,255,.25);color:#fff;
+    padding:10px 20px;border-radius:8px;font-family:var(--font-body);font-size:0.85rem;cursor:pointer;
+  }
+  .stats-refresh:hover{background:rgba(255,255,255,.1);}
+  .stats-note{margin-top:18px;font-size:0.8rem;color:rgba(255,255,255,.45);max-width:340px;}
+</style>
+</head>
+<body>
+<div class="stats-wrap">
+  <img src="images/logo-scs.png" alt="Saloyal Cargo Solution" class="stats-logo">
+  <div class="stats-card">
+    <div class="stats-number" id="visit-count">—</div>
+    <div class="stats-label">Total Website Visits</div>
+  </div>
+  <button class="stats-refresh" id="refresh-btn">Refresh</button>
+  <p class="stats-note">This page is private and not linked anywhere on the site. Bookmark it to check visits anytime.</p>
+</div>
+
+<script>
+  async function loadStats() {
+    const el = document.getElementById('visit-count');
+    el.textContent = '…';
+    try {
+      const res = await fetch('/api/stats');
+      const json = await res.json();
+      const count = json?.data?.data?.count ?? json?.data?.count ?? json?.data?.up_count ?? null;
+      el.textContent = (count !== null && count !== undefined) ? count.toLocaleString() : 'N/A';
+    } catch (e) {
+      el.textContent = 'Error';
+    }
+  }
+  document.getElementById('refresh-btn').addEventListener('click', loadStats);
+  loadStats();
+</script>
+</body>
+</html>

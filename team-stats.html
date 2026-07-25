@@ -49,8 +49,8 @@
     try {
       const res = await fetch('/api/stats');
       const json = await res.json();
-      const count = json?.data?.data?.count ?? json?.data?.count ?? json?.data?.up_count ?? null;
-      el.textContent = (count !== null && count !== undefined) ? count.toLocaleString() : 'N/A';
+      const count = json?.data?.data?.up_count;
+      el.textContent = (typeof count === 'number') ? count.toLocaleString() : 'N/A';
     } catch (e) {
       el.textContent = 'Error';
     }

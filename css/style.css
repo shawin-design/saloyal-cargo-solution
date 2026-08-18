@@ -681,3 +681,57 @@ section{padding:100px 0;}
 
 /* ---------- Animated counters ---------- */
 .hero-stats .stat b.counting{position:relative;}
+
+/* ---------- Trust signals ---------- */
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:860px){.trust-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.trust-grid{grid-template-columns:1fr;}}
+.trust-item{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--white);border:1px solid var(--border);border-radius:12px;
+  padding:18px 20px;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.trust-item:hover{transform:translateY(-3px);box-shadow:0 16px 30px -20px rgba(10,37,64,.25);border-color:var(--sky);}
+.trust-item .check{
+  width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg, var(--wave-blue), var(--sky));
+  display:flex;align-items:center;justify-content:center;
+}
+.trust-item .check svg{width:15px;height:15px;color:#fff;}
+.trust-item span{font-size:0.94rem;color:var(--ink);font-weight:500;line-height:1.4;}
+
+.trust-contact{
+  display:flex;gap:28px;flex-wrap:wrap;align-items:center;justify-content:center;
+  margin-top:32px;padding-top:28px;border-top:1px solid var(--border);
+}
+.trust-contact a{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--font-mono);font-size:0.92rem;color:var(--navy);font-weight:600;
+}
+.trust-contact a svg{width:18px;height:18px;color:var(--wave-blue);}
+.trust-contact a:hover{color:var(--wave-blue);}
+
+/* ---------- Process steps ---------- */
+.process-steps{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  position:relative;counter-reset:step;
+}
+@media (max-width:900px){.process-steps{grid-template-columns:repeat(2,1fr);gap:20px;}}
+@media (max-width:520px){.process-steps{grid-template-columns:1fr;}}
+.process-step{
+  position:relative;padding:0 16px 0 0;text-align:left;
+}
+.process-step .num{
+  font-family:var(--font-display);font-size:1.8rem;font-weight:700;
+  color:var(--sky);opacity:.55;line-height:1;margin-bottom:10px;
+}
+.process-step h4{color:var(--white);font-size:1rem;margin-bottom:6px;}
+.process-step p{color:rgba(255,255,255,.65);font-size:0.85rem;line-height:1.5;}
+.process-step::after{
+  content:'';position:absolute;top:14px;right:0;width:100%;height:1px;
+  background:linear-gradient(90deg, rgba(79,195,247,.4), transparent);
+  display:none;
+}
+@media (min-width:901px){
+  .process-step:not(:last-child)::after{display:block;}
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /team-stats.html
+Disallow: /api/
+
+Sitemap: https://saloyalcargosolution.co.ke/sitemap.xml
